@@ -130,3 +130,5 @@ MESSAGE_TAGS = {
         messages.WARNING: 'alert-warning',
         messages.ERROR: 'alert-danger',
  }
+import django_heroku
+django_heroku.settings(locals())
