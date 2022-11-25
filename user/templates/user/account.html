@@ -1,0 +1,78 @@
+
+{% extends "base.html" %}
+
+{% load static %}   
+{% block title %} {{ title }} {% endblock title %}
+
+{% block custom_css %} 
+    <link rel="stylesheet" href="{% static 'user/css/account.css' %}" />
+{% endblock custom_css %}
+
+{% block navbar %} {% endblock navbar%}
+
+
+{% block body %} 
+
+
+        <div class="account-page" id="account">
+            <div class="container">
+                {% include 'messages.html' %}
+
+
+
+            <div class="row">
+                <!-- <div class="col-2">
+                <img src="{% static 'user/images/ecomerce.png'%}" width="50%" />
+                </div> -->
+                <div class="col-2">
+                <div class="form-container">
+                    <div class="form-btn">
+                    <span onclick="login()">Login</span>
+                    <span onclick="register()">Register</span>
+                    <hr id="indicator" />
+                    </div>
+                    
+                    <form action="" id="LoginForm" method="POST" novalidate>
+                        {% csrf_token %}
+
+                        {% for form_content in signin_form %}
+                             {{ form_content }}
+                             {{ form_content.errors }}
+                               
+                        {% endfor %}
+                    <!-- <input type="text" placeholder="Username" />
+                    <input type="password" placeholder="Password" />
+                    <button type="submit" class="btn">Login</button> -->
+                    <button type="submit" class="btn">Login</button>
+                    <a href="">Forgot Password</a>
+                    </form>
+                    <form action="" id="RegForm" method="POST" novalidate>
+                        {% csrf_token %}
+                    <!-- <input type="text" placeholder="Username" />
+                    <input type="email" placeholder="Email" />
+                    <input type="password" placeholder="Password" /> -->
+                    {% for form_content in signup_form %}
+                        {{ form_content }}
+                        {{ form_content.errors }}
+                      
+                    {% endfor %}
+
+                    <button type="submit" class="btn">Register</button>
+                    </form>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+
+
+
+
+        <script type="text/javascript" src="{% static 'user/js/main.js' %}"></script>
+
+        {{ form }}
+
+        
+
+{% endblock body %}

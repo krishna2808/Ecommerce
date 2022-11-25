@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% load static %}
+{% load mathfilters %}
+
+{% block title %} {{ title }} {% endblock title %}
+
+{% block body %}
+
+
+{{ block.super }}
+
+  <div class="bg-color">   <br>
+    {% include 'messages.html' %}
+
+
+    <div class="categories" id="product">
+      <div class="small-container">
+
+        <h2 class="title">Category Products</h2>
+        <div class="row bg-product">
+
+          {% for category_product in category_products %}
+             
+  
+
+ 
+          <div class="col-3 ">
+            <img src="{{ category_product.image.url }}" alt="" />
+
+          </div>
+
+          {% endfor %}
+         
+        </div>
+      </div>
+    </div> <br>
+
+    <div class="small-container">
+      <h2 class="title">Featured Products</h2>
+      <div class="row bg-product">
+
+        {% for product in feature_product %} 
+     
+        <div class="col-4">
+          <a href="{% url 'show_product' id=product.id %}">
+            <div class="detail-content"> <br> <br>
+              <h3> {{ product.name }} </h3>
+              <b> stock :  </b> {{product.stock}}  <br>
+              <b> Price :  </b> {{product.price}}  <br>
+
+            </div>
+
+              <img src="{{ product.image.url  }}" alt="" />
+              <h3>{{ product.name }}</h3>
+              <p> {{product.description}}</p>
+            
+              <h4> <b> Rs : {{product.price}} &nbsp;&nbsp;&nbsp;<del> {{product.actual_price   }}</del>  </b>  </h4>
+
+              <h4> <b  class="discount" > Discount : {{product.actual_price|sub:product.price|mul:100|div:product.actual_price|floatformat}} % </b>  </h4>
+
+              <!-- <h4> <b> stock : { {product.stock}} </b></h4> -->
+
+          </a>
+         
+        </div>
+    {% endfor %}
+
+   
+
+
+      </div> <br>
+
+
+      <h2 class="title">Latest Products</h2>
+      <div class="row bg-product">
+        {% for product in products %} 
+     
+            <div class="col-4">
+              <a href="{% url 'show_product' id=product.id %}">
+                <div class="detail-content"> <br> <br>
+                  <h3> {{ product.name }} </h3>
+                  <b> stock :  </b> {{product.stock}}  <br>
+                  <b> Price :  </b> {{product.price}}  <br>
+  
+                </div>
+  
+                  <img src="{{ product.image.url  }}" alt="" />
+                  <h3>{{ product.name }}</h3>
+                  <p> {{product.description}}</p>
+                
+                  <h4> <b> Rs : {{product.price}} &nbsp;&nbsp;&nbsp;<del> {{product.actual_price   }}</del>  </b>  </h4>
+
+                  <h4> <b  class="discount" > Discount : {{product.actual_price|sub:product.price|mul:100|div:product.actual_price|floatformat}} % </b>  </h4>
+
+                  <!-- <h4> <b> stock : { {product.stock}} </b></h4> -->
+ 
+              </a>
+             
+            </div>
+        {% endfor %}
+        </div>
+        
+      
+    </div> <br> <br>
+
+
+
+
+
+
+
+
+    
+   
+{% endblock body%}
+
+
+{% block footer %}
+
+{{ block.super }}
+
+{% endblock footer%}
+
+
+
+
+
+

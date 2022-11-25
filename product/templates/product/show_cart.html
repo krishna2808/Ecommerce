@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load static %}
+{% load mathfilters %}
+
+{% block title %} {{ title }} {% endblock title %}
+
+{% block body %}
+
+{{ block.super }}
+
+    </div>
+ 
+    <div class="bg-color">   <br>
+
+
+    
+
+        <div class="small-container">
+     
+
+
+            {% if cart_queryset %} 
+            <h2 class="title">Cart Products</h2>
+            <div class="row bg-product">
+
+
+                {% for product in cart_queryset %} 
+
+                <div class="col-4">
+                <div class="detail-content"> <br> <br>
+                    <h3> {{ product }} </h3>
+                    <b> stock :  </b> {{product.product_property.stock}}  <br>
+                    <b> Price :  </b> {{product.product_property.price }}  <br>
+
+                </div>
+
+                <img src="{{ product.product_property.image.url  }}" alt="" />
+                <h3>{{ product.product_property.name }}</h3>
+                <p> {{product.product_property.description}}</p>
+                
+
+                <h4> <b> Rs : {{product.product_property.price}} &nbsp;&nbsp;&nbsp;<del> {{product.product_property.actual_price   }}</del>  </b>  </h4>
+
+                <h4> <b  class="discount" > Discount : {{product.product_property.actual_price|sub:product.product_property.price|mul:100|div:product.product_property.actual_price|floatformat}} % </b>  </h4> <br>
+
+                
+
+                <a href="{% url 'remove_item' id=product.id  %}"><button  class="btn btn-danger">  Remove Item </button></a>
+                </div>
+
+                {% endfor %}
+
+
+        </div>
+        
+
+            <div class="price_show"> 
+                <h3> Total Amount    :   ₹ {{total_price}} </h3>
+                <a href="{% url 'order_item' amount=total_price %}"> <button class="btn btn-success"> PLACE ORDER </button></a> <br> <br>
+            </div> 
+
+        
+        
+        {% else %} 
+        
+        <h2 class="title">CART ITEMS IS NOT AVAILABLE  </h2>
+        {% endif %}
+
+           
+       
+        
+
+
+
+                
+
+            </div> <br> <br>
+            
+        
+        </div> 
+
+
+
+
+
+{% endblock body%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

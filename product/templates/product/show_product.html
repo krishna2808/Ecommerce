@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+{% load mathfilters %}
+
+{% block title %} {{ title }} {% endblock title %}
+
+{% block body %}
+
+{{ block.super }}
+ 
+    <div class="bg-color">   <br>
+
+
+    
+
+        <div class="small-container">
+     
+
+            <h2 class="title">Latest Products</h2>
+
+            {% include 'messages.html' %}
+
+
+            <div class="row bg-product">
+                {% for product in show_products_property %} 
+
+                    <div class="col-4">
+                    <div class="detail-content"> <br> <br>
+                        <h3> {{ product.name }} </h3>
+                        <b> stock :  </b> {{product.stock}}  <br>
+                        <b> Price :  </b> {{product.price}}  <br>
+
+                    </div>
+
+                    <img src="{{ product.image.url  }}" alt="" />
+                    <h3>{{ product.name }}</h3>
+                    <p> {{product.description}}</p>
+                    <!-- <h4> <b> stock : {{product.stock}} </b></h4> -->
+                    
+                  <h4> <b> Rs : {{product.price}} &nbsp;&nbsp;&nbsp;<del> {{product.actual_price   }}</del>  </b>  </h4>
+
+                  <h4> <b  class="discount" > Discount : {{product.actual_price|sub:product.price|mul:100|div:product.actual_price|floatformat}} % </b>  </h4> <br>
+                  
+                    
+
+                    <a href="{% url 'add_cart' id=product.id  show_product_id=show_product_id %}"><button class="btn btn-primary">  Add To Cart </button></a>
+                    </div>
+
+
+                {% endfor %}
+                
+            </div> <br> <br>   
+        
+        </div> <br> <br>
+
+
+
+
+
+
+{% endblock body%}
+
+
+
+
+
+
+
+
+
