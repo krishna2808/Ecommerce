@@ -3,8 +3,6 @@ from django import forms
 from .models import User
 
 
-
-
 class UserCreationForm(forms.ModelForm):
     """A form for creating new users. Includes all the required
     fields, plus a repeated password."""
@@ -35,12 +33,12 @@ class UserCreationForm(forms.ModelForm):
             raise forms.ValidationError("Passwords don't match")
         return password2
     
-    def clean_email(self): 
-        user_email = self.cleaned_data.get('email')
-        if user_email:
-            user_query_set = User.objects.filter(email=user_email)
-            if user_query_set:
-                self.add_error('email', 'Email is already exist try different one ')        
+    # def clean_email(self): 
+    #     user_email = self.cleaned_data.get('email')
+    #     if user_email:
+    #         user_query_set = User.objects.filter(email=user_email)
+    #         if user_query_set:
+    #             self.add_error('email', 'Email is already exist try different one ')        
 
     
     
