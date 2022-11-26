@@ -23,7 +23,7 @@ def account(request):
                if signup_form.is_valid():
                     name = signup_form.cleaned_data.get('name')
                     email = signup_form.cleaned_data.get('email')
-                    password = signup_form.cleaned_data.get('password')
+                    password = signup_form.cleaned_data.get('password1')
                     User.objects.create_user(email=email, name=name, password=password).save() 
                     messages.success(request, 'Your Account Successfully Created !!! ')
                     return  HttpResponseRedirect(reverse('sign_in'))
