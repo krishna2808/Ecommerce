@@ -9,6 +9,7 @@
 
 {{ block.super }}
 
+
   <div class="bg-color">   <br>
     {% include 'messages.html' %}
 
@@ -16,26 +17,32 @@
     <div class="categories" id="product">
       <div class="small-container">
 
+        {% if category_products %}
+
         <h2 class="title">Category Products</h2>
-        <div class="row bg-product">
+            <div class="row bg-product">
 
-          {% for category_product in category_products %}
-             
-  
+              {% for category_product in category_products %}
+                
+      
 
- 
-          <div class="col-3 ">
-            <img src="{{ category_product.image.url }}" alt="" />
+    
+              <div class="col-3 ">
+                <img src="{{ category_product.image.url }}" alt="" />
 
-          </div>
+              </div>
 
-          {% endfor %}
-         
-        </div>
+              {% endfor %}
+            
+            </div>
+        {% endif %}    
       </div>
     </div> <br>
 
     <div class="small-container">
+
+      {% if feature_product %}
+      
       <h2 class="title">Featured Products</h2>
       <div class="row bg-product">
 
@@ -66,12 +73,15 @@
     {% endfor %}
 
    
-
+    {% endif %}
 
       </div> <br>
 
 
+
+    {% if products %}
       <h2 class="title">Latest Products</h2>
+ 
       <div class="row bg-product">
         {% for product in products %} 
      
@@ -99,18 +109,11 @@
             </div>
         {% endfor %}
         </div>
+    {% endif %}
         
       
     </div> <br> <br>
 
-
-
-
-
-
-
-
-    
    
 {% endblock body%}
 
@@ -120,9 +123,5 @@
 {{ block.super }}
 
 {% endblock footer%} {% endcomment %}
-
-
-
-
 
 

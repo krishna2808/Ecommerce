@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from .admin import UserCreationForm
-from user.forms import UserLogin, UserProfile
+from user.forms import UserLogin, UserProfile,m UserCreationForm
 from django.contrib.auth import authenticate, login, logout 
 from user.models import User 
 from django.urls import reverse
@@ -38,6 +37,7 @@ def account(request):
                        login(request, user)  
                     #    messages.success(request, 'Your Account Successfully Created !!! ')
                        return  HttpResponseRedirect(reverse('dashboard'))
+                    messages.error(request, 'Enter Valid Email or Password !!! ') 
                     #   return HttpResponseRedirect('/dashboard') 
                        
      context = {'title' : 'Account Opening',
