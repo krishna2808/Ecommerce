@@ -28,7 +28,7 @@
                     {% if user.pic   %}
                     <img src="{{ user.pic.url }}" width="10%" height="10%"  class="rounded-circle">
                     {% else %}
-                       <img src=""  class="rounded" > 
+                       <img src="{% static 'user/images/default.png'%}"  class="rounded" > 
                     {% endif %} <br> <br> 
      
      
