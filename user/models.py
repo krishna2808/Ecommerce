@@ -63,7 +63,7 @@ class User(AbstractBaseUser):
     def has_perm(self, perm, obj=None):
         "Does the user have a specific permission?"
         # Simplest possible answer: Yes, always
-         return self.is_admin
+        return self.is_admin
 
     def has_module_perms(self, app_label):
         "Does the user have permissions to view the app `app_label`?"
