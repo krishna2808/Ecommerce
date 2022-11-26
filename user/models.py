@@ -45,7 +45,7 @@ class User(AbstractBaseUser):
         unique=True,
     )
     name = models.CharField(max_length=30)
-    pic = models.ImageField(upload_to="images/user/" + str(datetime.datetime.now()) + "/" )
+    pic = models.ImageField(default='default.png', upload_to="images/user/" + str(datetime.datetime.now()) + "/" )
     mobile_number = models.CharField(max_length=12)
     address = models.CharField(max_length=80)
     
