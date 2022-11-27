@@ -34,9 +34,8 @@ def account(request):
                          password = signin_form.cleaned_data.get('password')
                          user = authenticate(request, email=email , password=password)
                          if user is not None: 
-                         login(request, user)  
-                         #    messages.success(request, 'Your Account Successfully Created !!! ')
-                         return  HttpResponseRedirect(reverse('dashboard'))
+                              login(request, user)  
+                              return  HttpResponseRedirect(reverse('dashboard'))
                          messages.error(request, 'Enter Valid Email or Password !!! ') 
                          #   return HttpResponseRedirect('/dashboard') 
                          
