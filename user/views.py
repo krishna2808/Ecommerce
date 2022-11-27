@@ -39,11 +39,13 @@ def account(request):
                          messages.error(request, 'Enter Valid Email or Password !!! ') 
                          #   return HttpResponseRedirect('/dashboard') 
                          
-     context = {'title' : 'Account Opening',
-                'signin_form' : signin_form,
-                'signup_form' : signup_form
-               }                 
-     return render(request, 'user/account.html', context=context)
+          context = {'title' : 'Account Opening',
+                    'signin_form' : signin_form,
+                    'signup_form' : signup_form
+                    }                 
+          return render(request, 'user/account.html', context=context)
+     return HttpResponseRedirect('/dashboard') 
+     
 
 
 
