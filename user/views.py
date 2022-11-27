@@ -44,7 +44,7 @@ def account(request):
                     'signup_form' : signup_form
                     }                 
           return render(request, 'user/account.html', context=context)
-     return HttpResponseRedirect('/dashboard') 
+     return HttpResponseRedirect(reverse('dashboard'))
      
 
 
