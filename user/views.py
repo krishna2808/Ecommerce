@@ -15,31 +15,31 @@ from django.contrib import messages
 def account(request):
      signin_form  = UserLogin()
      signup_form  = UserCreationForm() 
-     if request.method == 'POST':
-
-          if request.POST.get('name'):
-               signup_form  = UserCreationForm(request.POST)
-               if signup_form.is_valid():
-                    name = signup_form.cleaned_data.get('name')
-                    email = signup_form.cleaned_data.get('email')
-                    password = signup_form.cleaned_data.get('password1')
-                    User.objects.create_user(email=email, name=name, password=password).save() 
-                    messages.success(request, 'Your Account Successfully Created !!! ')
-                    return  HttpResponseRedirect(reverse('sign_in'))
-                    
-          else: 
-               signin_form  = UserLogin(request.POST)
-               if signin_form.is_valid():
-                    email = signin_form.cleaned_data.get('email')
-                    password = signin_form.cleaned_data.get('password')
-                    user = authenticate(request, email=email , password=password)
-                    if user is not None: 
-                       login(request, user)  
-                    #    messages.success(request, 'Your Account Successfully Created !!! ')
-                       return  HttpResponseRedirect(reverse('dashboard'))
-                    messages.error(request, 'Enter Valid Email or Password !!! ') 
-                    #   return HttpResponseRedirect('/dashboard') 
-                       
+     if not request.user.is_authenticated : 
+          if request.method == 'POST':
+               if request.POST.get('name'):
+                    signup_form  = UserCreationForm(request.POST)
+                    if signup_form.is_valid():
+                         name = signup_form.cleaned_data.get('name')
+                         email = signup_form.cleaned_data.get('email')
+                         password = signup_form.cleaned_data.get('password1')
+                         User.objects.create_user(email=email, name=name, password=password).save() 
+                         messages.success(request, 'Your Account Successfully Created !!! ')
+                         return  HttpResponseRedirect(reverse('sign_in'))
+                         
+               else: 
+                    signin_form  = UserLogin(request.POST)
+                    if signin_form.is_valid():
+                         email = signin_form.cleaned_data.get('email')
+                         password = signin_form.cleaned_data.get('password')
+                         user = authenticate(request, email=email , password=password)
+                         if user is not None: 
+                         login(request, user)  
+                         #    messages.success(request, 'Your Account Successfully Created !!! ')
+                         return  HttpResponseRedirect(reverse('dashboard'))
+                         messages.error(request, 'Enter Valid Email or Password !!! ') 
+                         #   return HttpResponseRedirect('/dashboard') 
+                         
      context = {'title' : 'Account Opening',
                 'signin_form' : signin_form,
                 'signup_form' : signup_form
