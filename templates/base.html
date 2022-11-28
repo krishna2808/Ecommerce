@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> {% block title %} Ecommerce Website {% endblock title %}</title>
     
-    <!-- {% cache 500 sidebar %} -->
+
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,7 +31,7 @@
 
 
     {% endblock custom_css%}
-    <!-- {% endcache %} -->
+
 
 
   </head>
@@ -53,11 +53,27 @@
                         <img src="{% static 'user/images/logo5.png'%}" alt="" width="125px"/></a>
                       </div>
 
+                    
+
+                     
+
+
+
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-2">
+
+
+
+                          <form  method="POST" action="{% url 'search_product'  %}" class="d-flex" role="search">
+                            {% csrf_token %}
+                          <input class="form-control me-2" name="search_product" type="search" placeholder="Search Product" aria-label="Search">
+                          <input  class="btn btn-outline-success" type="submit" value = "Search">
+                          </form>
+
+
                        
 
                               <li  class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'dashboard' %}">Home</a></li>
@@ -95,12 +111,8 @@
                     </div>
                     </div>
                 </nav>
-
   
 </div>
-
-
-
 
      <div class="header-below">   
 
@@ -124,9 +136,6 @@
         <!-- </div> -->
       
     </div>
-
-
-
 
     <!-- Optional Javascript -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -189,16 +198,5 @@
     
     {% endblock footer %}
  {% endcomment %}
-
-
-
-
-
-
-  
-
-
-
-
   </body>
 </html>

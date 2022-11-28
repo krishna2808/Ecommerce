@@ -50,6 +50,7 @@ def add_cart(request, id=None, show_product_id=None):
                response.set_cookie(str(id) ,int(value)-1)     
           user = Cart(user=user_instance, product_property=product_property_instance)
           user.save()
+          messages.success(request, 'Item Added Cart')      
           
           return response 
    
@@ -76,6 +77,7 @@ def remove_item(request, id=None):
           product_property_id  = remove_data.product_property.id 
           remove_data.delete()
           value = request.COOKIES.get(str(product_property_id))
+          messages.error(request, 'Remove Item from Cart !!')      
           if value is not None: 
                response = HttpResponseRedirect(reverse('show_cart'))
                response.set_cookie(str(product_property_id) , int(value)+1)
@@ -124,8 +126,9 @@ def cancel_product(request, id=None):
           product.stock += 1 
           product.save() 
           order_cancel.delete()
+          messages.error(request, 'Order Item Cancel !!')  
 
-          return  HttpResponseRedirect(reverse('show_order_item'))
+          return  HttpResponseRedirect(reverse('dashboard'))
 
 @login_required(login_url='sign_in')
 def user_order_history(request):
@@ -135,3 +138,26 @@ def user_order_history(request):
                 'order_items_queryset' : order_items_queryset
     }
     return render(request, 'product/user_order_history.html', context=context)
+
+@login_required(login_url='sign_in')
+def search_product(request):
+     if request.method == "POST":
+          search_product = request.POST.get('search_product')
+         
+          search_product_queryset = ProductProperty.objects.filter(name__icontains=search_product)
+          
+          if search_product_queryset and search_product:
+               product_id = search_product_queryset.first().product_name.id
+
+               context = {'title' : 'Search Product', 
+                           'search_product_queryset': search_product_queryset,
+                           'show_product_id' : product_id,
+                         }
+                 
+               messages.success(request, 'Product Found')     
+               return render(request, 'product/search_product.html', context=context)
+          messages.error(request, 'Product not Found')           
+          
+
+
+     return  HttpResponseRedirect(reverse('dashboard'))     

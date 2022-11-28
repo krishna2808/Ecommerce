@@ -2,12 +2,13 @@
 
 from django.urls import path
 from .views import  dashboard, show_product, add_cart,\
-show_cart, remove_item, order_item, show_order_item, cancel_product, user_order_history
+show_cart, remove_item, order_item, show_order_item, cancel_product, user_order_history, search_product
 
 
 
 urlpatterns = [
     path('dashboard/',  dashboard, name= "dashboard"),
+    path('search_product/', search_product, name="search_product"),
     path('show_product/<int:id>/',  show_product, name= "show_product"),
     path('add_cart/<int:id>/<int:show_product_id>',  add_cart, name= "add_cart"),
     path('show_cart/',  show_cart, name= "show_cart"),
