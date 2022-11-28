@@ -23,12 +23,10 @@
             <div class="row bg-product">
 
               {% for category_product in category_products %}
-                
-      
 
-    
               <div class="col-3 ">
-                <img src="{{ category_product.image.url }}" alt="" />
+                <img src="{{ category_product.image.url }}" alt="" />     <br> 
+                <h4> {{ category_product.name }} </h4>
 
               </div>
 
