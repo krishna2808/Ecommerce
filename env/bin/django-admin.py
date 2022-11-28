@@ -1,4 +1,4 @@
-#!/home/learniphi/Documents/krishna/Task/env/bin/python3.5
+#!/home/learniphi/Documents/krishna/git_clone/Ecommerce/env/bin/python
 from django.core import management
 
 if __name__ == "__main__":

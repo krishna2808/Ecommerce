@@ -18,14 +18,14 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(ProductProperty)
 class ProductPropertyAdmin(admin.ModelAdmin):
-    list_display = ('product_name', 'name', 'rating', 'stock', 'description', 'image', 'actual_price', 'price', 'rating') 
+    list_display = ('id', 'product_name', 'name', 'rating', 'stock', 'description', 'image', 'actual_price', 'price', 'rating') 
     list_editable = ('actual_price', 'price', 'stock')
 
 
 
 @admin.register(Cart)
 class CartAdmin(admin.ModelAdmin):
-    list_display = ('user', 'product_property', 'is_not_order') 
+    list_display = ('id', 'user', 'product_property', 'is_not_order') 
 
 
 @admin.register(Order)

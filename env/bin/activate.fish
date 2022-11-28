@@ -32,7 +32,7 @@ end
 # unset irrelavent variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/learniphi/Documents/krishna/Task/env"
+set -gx VIRTUAL_ENV "/home/learniphi/Documents/krishna/git_clone/Ecommerce/env"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

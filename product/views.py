@@ -73,11 +73,12 @@ def show_cart(request):
 def remove_item(request, id=None):
      if id is not None:
           remove_data = Cart.objects.get(id=id)
+          product_property_id  = remove_data.product_property.id 
           remove_data.delete()
-          value = request.COOKIES.get(str(id))
+          value = request.COOKIES.get(str(product_property_id))
           if value is not None: 
                response = HttpResponseRedirect(reverse('show_cart'))
-               response.set_cookie(str(id) , int(value)+1)
+               response.set_cookie(str(product_property_id) , int(value)+1)
           
                return response 
           return HttpResponseRedirect(reverse('show_cart'))  
@@ -111,8 +112,7 @@ def show_order_item(request):
                 'order_item_queryset': order_item_queryset, 
                }
      return render(request, 'product/show_order_item.html', context=context)
-
-               
+           
 @login_required(login_url='sign_in')
 def cancel_product(request, id=None):
      if id is not None:
