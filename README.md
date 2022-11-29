@@ -8,7 +8,7 @@
    python3 manage.py runserver
    
 (1) Create virtual  environment. <br>
-           $ python3.8 -m venv env
+           $ python3.5 -m venv env
 
 (2)  Clone project from github <br>
       $ git clone  https://github.com/krishna2808/Ecommerce.git
