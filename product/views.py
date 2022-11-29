@@ -44,7 +44,7 @@ def add_cart(request, id=None, show_product_id=None):
           if value is None: 
                response.set_cookie(str(id) , product_property_instance.stock-1)
           else: 
-               if int(value) == 0:
+               if int(value) <= 0:
                     messages.error(request, 'OUT OF STOCK !!') 
                     return  HttpResponseRedirect(reverse('dashboard'))     
                response.set_cookie(str(id) ,int(value)-1)     
